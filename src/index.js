@@ -1,4 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
+import App from "./components/App";
 
-render(<div>Eikat nahuj!</div>, document.getElementById("root"));
+render(<App></App>, document.getElementById("root"));
