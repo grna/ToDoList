@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+}
+.todo-node {
+  padding: 16px;
+  margin: 8px;
+  background-color: aliceblue;
+}
+.todo-node h4 {
+  text-align: center;
+  font-size: 24px;
+}
+.column {
+  height: 100%;
+  width: 100%;
+}
+.column h3 {
+  text-align: center;
+  font-size: 30px;
+}
+.not-started {
+  background-color: rgb(212, 210, 228);
+}
+.in-progress {
+  background-color: rgb(228, 210, 210);
+}
+.done {
+  background-color: rgb(228, 228, 210);
+}

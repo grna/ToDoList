@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "_id": "todo1",
+      "title": "ToDo 1",
+      "description": "Just do it.",
+      "status": "not started"
+    },
+    {
+      "_id": "todo2",
+      "title": "ToDo 2",
+      "description": "Just do it.",
+      "status": "not started"
+    },
+    {
+      "_id": "todo3",
+      "title": "ToDo 3",
+      "description": "Just do it.",
+      "status": "in progress"
+    },
+    {
+      "_id": "todo4",
+      "title": "ToDo 4",
+      "description": "Just do it.",
+      "status": "in progress"
+    },
+    {
+      "_id": "todo5",
+      "title": "ToDo 5",
+      "description": "Just do it.",
+      "status": "done"
+    },
+    {
+      "_id": "todo6",
+      "title": "ToDo 6",
+      "description": "Just do it.",
+      "status": "done"
+    }
+  ]
+}
