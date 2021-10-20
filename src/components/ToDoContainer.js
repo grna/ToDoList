@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import ToDoList from "./ToDoList";
 import { connect } from "react-redux";
 import "../styles/todo.css";
-import { addNewTask } from "../redux/actions/tasksActions";
+import { addNewTask, updateTask } from "../redux/actions/tasksActions";
 
-const ToDoContainer = ({ tasks, addNewTask }) => {
+const ToDoContainer = ({ tasks, addNewTask, updateTask }) => {
   const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
@@ -26,7 +26,8 @@ const ToDoContainer = ({ tasks, addNewTask }) => {
         {notStartedTasks.length > 0 ? (
           <ToDoList
             className="not-started"
-            toDoList={notStartedTasks}></ToDoList>
+            toDoList={notStartedTasks}
+            updateTask={updateTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -36,7 +37,8 @@ const ToDoContainer = ({ tasks, addNewTask }) => {
         {inProgressTasks.length > 0 ? (
           <ToDoList
             className="in-progress"
-            toDoList={inProgressTasks}></ToDoList>
+            toDoList={inProgressTasks}
+            updateTask={updateTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -44,7 +46,10 @@ const ToDoContainer = ({ tasks, addNewTask }) => {
       <div className="done column">
         <h3>Done</h3>
         {doneTasks.length > 0 ? (
-          <ToDoList className="done" toDoList={doneTasks}></ToDoList>
+          <ToDoList
+            className="done"
+            toDoList={doneTasks}
+            updateTask={updateTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -63,10 +68,13 @@ ToDoContainer.propTypes = {
     })
   ),
   addNewTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   tasks: state.fromTasks.tasks,
 });
 
-export default connect(mapStateToProps, { addNewTask })(ToDoContainer);
+export default connect(mapStateToProps, { addNewTask, updateTask })(
+  ToDoContainer
+);
