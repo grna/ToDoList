@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import ToDoList from "./ToDoList";
 import { connect } from "react-redux";
 import "../styles/todo.css";
+import { addNewTask } from "../redux/actions/tasksActions";
 
-const ToDoContainer = ({ tasks }) => {
+const ToDoContainer = ({ tasks, addNewTask }) => {
   const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
@@ -21,6 +22,7 @@ const ToDoContainer = ({ tasks }) => {
     <div className="container">
       <div className="not-started column">
         <h3>Not Started</h3>
+        <button onClick={() => addNewTask()}>+</button>
         {notStartedTasks.length > 0 ? (
           <ToDoList
             className="not-started"
@@ -60,10 +62,11 @@ ToDoContainer.propTypes = {
       status: PropTypes.string.isRequired,
     })
   ),
+  addNewTask: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   tasks: state.fromTasks.tasks,
 });
 
-export default connect(mapStateToProps, {})(ToDoContainer);
+export default connect(mapStateToProps, { addNewTask })(ToDoContainer);
