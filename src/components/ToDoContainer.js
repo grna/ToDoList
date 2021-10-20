@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import ToDoList from "./ToDoList";
 import { connect } from "react-redux";
 import "../styles/todo.css";
-import { addNewTask, updateTask } from "../redux/actions/tasksActions";
+import {
+  addNewTask,
+  updateTask,
+  deleteTask,
+} from "../redux/actions/tasksActions";
 
-const ToDoContainer = ({ tasks, addNewTask, updateTask }) => {
+const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
   const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
@@ -27,7 +31,8 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask }) => {
           <ToDoList
             className="not-started"
             toDoList={notStartedTasks}
-            updateTask={updateTask}></ToDoList>
+            updateTask={updateTask}
+            deleteTask={deleteTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -38,7 +43,8 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask }) => {
           <ToDoList
             className="in-progress"
             toDoList={inProgressTasks}
-            updateTask={updateTask}></ToDoList>
+            updateTask={updateTask}
+            deleteTask={deleteTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -49,7 +55,8 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask }) => {
           <ToDoList
             className="done"
             toDoList={doneTasks}
-            updateTask={updateTask}></ToDoList>
+            updateTask={updateTask}
+            deleteTask={deleteTask}></ToDoList>
         ) : (
           <div></div>
         )}
@@ -69,12 +76,13 @@ ToDoContainer.propTypes = {
   ),
   addNewTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   tasks: state.fromTasks.tasks,
 });
 
-export default connect(mapStateToProps, { addNewTask, updateTask })(
+export default connect(mapStateToProps, { addNewTask, updateTask, deleteTask })(
   ToDoContainer
 );

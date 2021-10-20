@@ -1,4 +1,9 @@
-import { FETCH_TASKS, ADD_TASK, UPDATE_TASK } from "../ActionTypes";
+import {
+  FETCH_TASKS,
+  ADD_TASK,
+  UPDATE_TASK,
+  DELETE_TASK,
+} from "../ActionTypes";
 import shortid from "shortid";
 
 export const fetchTasks = () => (dispatch) => {
@@ -36,6 +41,17 @@ export const updateTask = (newTask) => (dispatch, getState) => {
 
   dispatch({
     type: UPDATE_TASK,
+    payload: newTaskArray,
+  });
+};
+
+export const deleteTask = (id) => (dispatch, getState) => {
+  const newTaskArray = getState().fromTasks.tasks.filter((t) => {
+    return t._id !== id;
+  });
+
+  dispatch({
+    type: DELETE_TASK,
     payload: newTaskArray,
   });
 };
