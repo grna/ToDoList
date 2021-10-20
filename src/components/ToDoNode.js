@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function ToDoNode({ todo, updateTask }) {
+function ToDoNode({ todo, updateTask, deleteTask }) {
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description);
 
@@ -16,7 +16,9 @@ function ToDoNode({ todo, updateTask }) {
     updateTask(newTask);
   };
 
-  const onTaskDelete = () => {};
+  const onTaskDelete = () => {
+    deleteTask(todo._id);
+  };
 
   return (
     <div className="todo-node">
@@ -41,7 +43,7 @@ function ToDoNode({ todo, updateTask }) {
         <strong>Status: </strong>
         {todo.status}
       </label>
-      <button onClick={() => onTaskUpdate()}>Update</button>
+      <button onClick={() => onTaskUpdate()}>Save</button>
       <button onClick={() => onTaskDelete()}>Delete</button>
     </div>
   );
@@ -55,6 +57,7 @@ ToDoNode.propTypes = {
     status: PropTypes.string,
   }),
   updateTask: PropTypes.func,
+  deleteTask: PropTypes.func,
 };
 
 export default ToDoNode;
