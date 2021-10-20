@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 function ToDoNode({ todo, updateTask, deleteTask }) {
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description);
+  const [status, setStatus] = useState(todo.status);
 
   const onTaskUpdate = () => {
     const newTask = {
       _id: todo._id,
       title: title,
       description: description,
-      status: todo.status,
+      status: status,
     };
 
     updateTask(newTask);
@@ -41,6 +42,20 @@ function ToDoNode({ todo, updateTask, deleteTask }) {
       />
       <label>
         <strong>Status: </strong>
+        <select
+          defaultValue={status}
+          onChange={(e) => setStatus(e.target.value)}>
+          <option className="task-status" value="not started">
+            Not Started
+          </option>
+          <option className="task-status" value="in progress">
+            In Progress
+          </option>
+          <option className="task-status" value="done">
+            Done!
+          </option>
+        </select>
+
         {todo.status}
       </label>
       <button onClick={() => onTaskUpdate()}>Save</button>
