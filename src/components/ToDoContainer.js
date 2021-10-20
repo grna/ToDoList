@@ -1,22 +1,19 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import ToDoList from "./ToDoList";
+import { connect } from "react-redux";
 import "../styles/todo.css";
 
-function ToDoContainer() {
-  const data = require("../../data.json");
-
-  console.log(typeof data);
-
-  const notStarted = data.data.filter((todo) => {
+const ToDoContainer = ({ tasks }) => {
+  const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
 
-  const inProgress = data.data.filter((todo) => {
+  const inProgressTasks = tasks.filter((todo) => {
     return todo.status === "in progress";
   });
 
-  const done = data.data.filter((todo) => {
+  const doneTasks = tasks.filter((todo) => {
     return todo.status === "done";
   });
 
@@ -24,20 +21,49 @@ function ToDoContainer() {
     <div className="container">
       <div className="not-started column">
         <h3>Not Started</h3>
-        <ToDoList className="not-started" toDoList={notStarted}></ToDoList>
+        {notStartedTasks.length > 0 ? (
+          <ToDoList
+            className="not-started"
+            toDoList={notStartedTasks}></ToDoList>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="in-progress column">
         <h3>In Progress</h3>
-        <ToDoList className="in-progress" toDoList={inProgress}></ToDoList>
+        {inProgressTasks.length > 0 ? (
+          <ToDoList
+            className="in-progress"
+            toDoList={inProgressTasks}></ToDoList>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="done column">
         <h3>Done</h3>
-        <ToDoList className="done" toDoList={done}></ToDoList>
+        {doneTasks.length > 0 ? (
+          <ToDoList className="done" toDoList={doneTasks}></ToDoList>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
-}
+};
 
-ToDoContainer.propTypes = {};
+ToDoContainer.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+    })
+  ),
+};
 
-export default ToDoContainer;
+const mapStateToProps = (state) => ({
+  tasks: state.fromTasks.tasks,
+});
+
+export default connect(mapStateToProps, {})(ToDoContainer);

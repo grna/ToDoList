@@ -18,10 +18,10 @@ function ToDoNode({ todo }) {
 
 ToDoNode.propTypes = {
   todo: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    status: PropTypes.string,
   }),
 };
 
