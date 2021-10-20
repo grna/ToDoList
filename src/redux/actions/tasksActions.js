@@ -5,6 +5,7 @@ import {
   DELETE_TASK,
 } from "../ActionTypes";
 import shortid from "shortid";
+import axios from "axios";
 
 export const fetchTasks = () => (dispatch) => {
   const data = require("../../../data.json");
@@ -15,21 +16,33 @@ export const fetchTasks = () => (dispatch) => {
   });
 };
 
-export const addNewTask = () => (dispatch, getState) => {
-  const newTask = {
-    _id: shortid.generate().toString(),
-    title: "",
-    description: "",
-    status: "not started",
+export const addNewTask = () => async (dispatch, getState) => {
+  const options = {
+    method: "GET",
+    headers: { "Accept-Encoding": "gzip, deflate, br" },
+    url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
   };
 
-  const tasks = getState().fromTasks.tasks;
-  const newTaskArray = [newTask, ...tasks];
+  axios(options)
+    .then((res) => {
+      const newTask = {
+        _id: shortid.generate().toString(),
+        title: res.data.drinks[0].strDrink,
+        description: res.data.drinks[0].strInstructions,
+        status: "not started",
+      };
 
-  dispatch({
-    type: ADD_TASK,
-    payload: newTaskArray,
-  });
+      const tasks = getState().fromTasks.tasks;
+      const newTaskArray = [newTask, ...tasks];
+
+      dispatch({
+        type: ADD_TASK,
+        payload: newTaskArray,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const updateTask = (newTask) => (dispatch, getState) => {
