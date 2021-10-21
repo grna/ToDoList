@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToDoNode component Should not regress 1`] = `
+<div
+  className="todo-node"
+>
+  <label>
+    <strong>
+      Title:
+    </strong>
+  </label>
+  <input
+    onChange={[Function]}
+    type="text"
+    value="Sample task"
+  />
+  <label>
+    <strong>
+      Description:
+    </strong>
+  </label>
+  <textarea
+    defaultValue="Sample task description"
+    onChange={[Function]}
+  />
+  <label>
+    <strong>
+      Status: 
+    </strong>
+  </label>
+  <select
+    defaultValue="in progress"
+    onChange={[Function]}
+  >
+    <option
+      className="task-status"
+      value="not started"
+    >
+      Not Started
+    </option>
+    <option
+      className="task-status"
+      value="in progress"
+    >
+      In Progress
+    </option>
+    <option
+      className="task-status"
+      value="done"
+    >
+      Done!
+    </option>
+  </select>
+  <div
+    className="todo-buttons"
+  >
+    <button
+      onClick={[Function]}
+    >
+      Save
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</div>
+`;
