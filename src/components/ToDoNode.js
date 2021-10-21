@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 function ToDoNode({ todo, updateTask, deleteTask }) {
   const [title, setTitle] = useState(todo.title);
@@ -14,7 +15,12 @@ function ToDoNode({ todo, updateTask, deleteTask }) {
       status: status,
     };
 
-    updateTask(newTask);
+    toast.success("Task has been updated.");
+    try {
+      updateTask(newTask);
+    } catch (error) {
+      toast.error("Update failed.");
+    }
   };
 
   const onTaskDelete = () => {
