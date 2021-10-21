@@ -34,32 +34,27 @@ function ToDoNode({ todo, updateTask, deleteTask }) {
       <label>
         <strong>Description:</strong>
       </label>
-
-      <input
+      <textarea
         onChange={(e) => setDescription(e.target.value)}
-        type="text"
-        value={description}
-      />
+        defaultValue={description}></textarea>
       <label>
         <strong>Status: </strong>
-        <select
-          defaultValue={status}
-          onChange={(e) => setStatus(e.target.value)}>
-          <option className="task-status" value="not started">
-            Not Started
-          </option>
-          <option className="task-status" value="in progress">
-            In Progress
-          </option>
-          <option className="task-status" value="done">
-            Done!
-          </option>
-        </select>
-
-        {todo.status}
       </label>
-      <button onClick={() => onTaskUpdate()}>Save</button>
-      <button onClick={() => onTaskDelete()}>Delete</button>
+      <select defaultValue={status} onChange={(e) => setStatus(e.target.value)}>
+        <option className="task-status" value="not started">
+          Not Started
+        </option>
+        <option className="task-status" value="in progress">
+          In Progress
+        </option>
+        <option className="task-status" value="done">
+          Done!
+        </option>
+      </select>
+      <div className="todo-buttons">
+        <button onClick={() => onTaskUpdate()}>Save</button>
+        <button onClick={() => onTaskDelete()}>Delete</button>
+      </div>
     </div>
   );
 }
