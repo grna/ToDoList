@@ -31,4 +31,10 @@ button,
   padding: 8px 16px;
   font-weight: 800;
   margin: 4px;
+  max-height: 52px;
+}
+.todo-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

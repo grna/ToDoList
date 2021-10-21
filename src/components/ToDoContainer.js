@@ -25,8 +25,10 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
   return (
     <div className="container">
       <div className="not-started column">
-        <h3>Not Started</h3>
-        <button onClick={() => addNewTask()}>+</button>
+        <div className="todo-header">
+          <h3>Not Started</h3>
+          <button onClick={() => addNewTask()}>+</button>
+        </div>
         {notStartedTasks.length > 0 ? (
           <ToDoList
             className="not-started"
@@ -38,7 +40,9 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
         )}
       </div>
       <div className="in-progress column">
-        <h3>In Progress</h3>
+        <div className="todo-header">
+          <h3>In Progress</h3>
+        </div>
         {inProgressTasks.length > 0 ? (
           <ToDoList
             className="in-progress"
@@ -50,7 +54,9 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
         )}
       </div>
       <div className="done column">
-        <h3>Done</h3>
+        <div className="todo-header">
+          <h3>Done</h3>
+        </div>
         {doneTasks.length > 0 ? (
           <ToDoList
             className="done"
