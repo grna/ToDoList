@@ -9,12 +9,7 @@ import {
   deleteTask,
 } from "../redux/actions/tasksActions";
 
-export const ToDoContainer = ({
-  tasks,
-  addNewTask,
-  updateTask,
-  deleteTask,
-}) => {
+const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
   const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
