@@ -16,6 +16,15 @@ export const fetchTasks = () => (dispatch) => {
   });
 };
 
+const createNewTask = ({ strDrink, strInstructions }) => {
+  return {
+    _id: shortid.generate().toString(),
+    title: strDrink,
+    description: strInstructions,
+    status: "not started",
+  };
+};
+
 export const addNewTask = () => async (dispatch, getState) => {
   const options = {
     method: "GET",
@@ -25,19 +34,13 @@ export const addNewTask = () => async (dispatch, getState) => {
 
   axios(options)
     .then((res) => {
-      const newTask = {
-        _id: shortid.generate().toString(),
-        title: res.data.drinks[0].strDrink,
-        description: res.data.drinks[0].strInstructions,
-        status: "not started",
-      };
-
-      const tasks = getState().fromTasks.tasks;
-      const newTaskArray = [newTask, ...tasks];
+      const newTask = createNewTask(res.data.drinks[0]);
+      let tasks = getState().fromTasks.tasks.slice();
+      tasks = [newTask, ...tasks];
 
       dispatch({
         type: ADD_TASK,
-        payload: newTaskArray,
+        payload: tasks,
       });
     })
     .catch((err) => {
@@ -46,15 +49,13 @@ export const addNewTask = () => async (dispatch, getState) => {
 };
 
 export const updateTask = (newTask) => (dispatch, getState) => {
-  const tasks = getState().fromTasks.tasks.filter((t) => {
-    return t._id !== newTask._id;
-  });
-
-  const newTaskArray = [newTask, ...tasks];
+  const tasks = getState().fromTasks.tasks.slice();
+  const taskIndex = tasks.indexOf(tasks.find((t) => t._id === newTask._id));
+  tasks.splice(taskIndex, 1, newTask);
 
   dispatch({
     type: UPDATE_TASK,
-    payload: newTaskArray,
+    payload: tasks,
   });
 };
 
