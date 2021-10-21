@@ -12,7 +12,9 @@ export const tasksReducers = (state = {}, action) => {
     case ADD_TASK:
       return { tasks: action.payload };
     case UPDATE_TASK:
-      return { tasks: action.payload };
+      return {
+        tasks: action.payload,
+      };
     case DELETE_TASK:
       return { tasks: action.payload };
     default:

@@ -80,6 +80,7 @@ ToDoContainer.propTypes = {
       status: PropTypes.string.isRequired,
     })
   ),
+  taskSaved: PropTypes.bool,
   addNewTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
@@ -87,6 +88,7 @@ ToDoContainer.propTypes = {
 
 const mapStateToProps = (state) => ({
   tasks: state.fromTasks.tasks,
+  taskSaved: state.fromTasks.taskSaved,
 });
 
 export default connect(mapStateToProps, { addNewTask, updateTask, deleteTask })(
