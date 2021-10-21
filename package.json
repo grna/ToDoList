@@ -3,18 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run start-dev",
+    "start-dev": "webpack-dev-server --config webpack.config.dev.js --port 3000",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
   },
   "keywords": [],
   "author": "Girius Kraucevicius",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.23.0",
+    "jest": "^27.3.1",
+    "jest-cli": "^27.3.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
+    "react-test-renderer": "^17.0.2",
     "react-toastify": "^8.0.3",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",

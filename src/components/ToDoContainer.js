@@ -9,7 +9,12 @@ import {
   deleteTask,
 } from "../redux/actions/tasksActions";
 
-const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
+export const ToDoContainer = ({
+  tasks,
+  addNewTask,
+  updateTask,
+  deleteTask,
+}) => {
   const notStartedTasks = tasks.filter((todo) => {
     return todo.status === "not started";
   });
@@ -27,7 +32,9 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
       <div className="not-started column">
         <div className="todo-header">
           <h3>Not Started</h3>
-          <button onClick={() => addNewTask()}>+</button>
+          <button className="todo-add-btn" onClick={() => addNewTask()}>
+            +
+          </button>
         </div>
         {notStartedTasks.length > 0 ? (
           <ToDoList
@@ -80,15 +87,13 @@ ToDoContainer.propTypes = {
       status: PropTypes.string.isRequired,
     })
   ),
-  taskSaved: PropTypes.bool,
   addNewTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   tasks: state.fromTasks.tasks,
-  taskSaved: state.fromTasks.taskSaved,
 });
 
 export default connect(mapStateToProps, { addNewTask, updateTask, deleteTask })(

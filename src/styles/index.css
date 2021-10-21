@@ -38,3 +38,6 @@ button,
   align-items: center;
   justify-content: center;
 }
+.todo-add-btn {
+  background-color: rgb(11, 167, 11);
+}
