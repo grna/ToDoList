@@ -38,6 +38,14 @@
 .done {
   background-color: rgb(228, 228, 210);
 }
+.todo-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo-header button {
+  margin-left: 16px;
+}
 
 @media only screen and (max-width: 1520px) {
   .container {

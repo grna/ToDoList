@@ -27,7 +27,7 @@ const ToDoContainer = ({ tasks, addNewTask, updateTask, deleteTask }) => {
       <div className="not-started column">
         <div className="todo-header">
           <h3>Not Started</h3>
-          <button className="todo-add-btn" onClick={() => addNewTask()}>
+          <button className="btn-primary" onClick={() => addNewTask()}>
             +
           </button>
         </div>

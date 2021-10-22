@@ -58,8 +58,12 @@ function ToDoNode({ todo, updateTask, deleteTask }) {
         </option>
       </select>
       <div className="todo-buttons">
-        <button onClick={() => onTaskUpdate()}>Save</button>
-        <button onClick={() => onTaskDelete()}>Delete</button>
+        <button className="btn-primary" onClick={() => onTaskUpdate()}>
+          Save
+        </button>
+        <button className="btn-danger" onClick={() => onTaskDelete()}>
+          Delete
+        </button>
       </div>
     </div>
   );

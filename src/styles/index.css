@@ -32,12 +32,14 @@ button,
   font-weight: 800;
   margin: 4px;
   max-height: 52px;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 2px;
 }
-.todo-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.todo-add-btn {
+.btn-primary {
   background-color: rgb(75, 180, 75);
+}
+.btn-danger {
+  background-color: rgb(184, 59, 55);
 }
